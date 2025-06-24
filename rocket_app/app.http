@@ -1,28 +1,24 @@
 @web_api_host = http://127.0.0.1:8080
 
+### USERS
 
-###
+### GET all users
+GET {{web_api_host}}/api/users HTTP/2
 
-GEt {{web_api_host}}/api/users HTTP/2
-
-
-### 
-
+### GET one user
 GET {{web_api_host}}/api/users/3 HTTP/2
 
-###
-
+### PUT update user
 PUT {{web_api_host}}/api/users/3
 Content-Type: application/json
 
 {
-    "user_id": 3,
     "name": "Charley",
     "email": "charlie@example.com",
     "active": true
 }
 
-###
+### POST create user
 POST {{web_api_host}}/api/users HTTP/2
 Content-Type: application/json
 
@@ -31,3 +27,91 @@ Content-Type: application/json
     "email": "bob@example.com",
     "active": true
 }
+
+### DELETE user
+DELETE {{web_api_host}}/api/users/3
+
+### TASKS
+
+### GET all tasks
+GET {{web_api_host}}/api/tasks HTTP/2
+
+### GET one task
+GET {{web_api_host}}/api/tasks/1 HTTP/2
+
+### POST create task
+POST {{web_api_host}}/api/tasks HTTP/2
+Content-Type: application/json
+
+{
+    "task_name": "Write documentation"
+}
+
+### PUT update task
+PUT {{web_api_host}}/api/tasks/1
+Content-Type: application/json
+
+{
+    "task_name": "Write more documentation"
+}
+
+### DELETE task
+DELETE {{web_api_host}}/api/tasks/1
+
+### STATUSES
+
+### GET all statuses
+GET {{web_api_host}}/api/statuses HTTP/2
+
+### GET one status
+GET {{web_api_host}}/api/statuses/1 HTTP/2
+
+### POST create status
+POST {{web_api_host}}/api/statuses HTTP/2
+Content-Type: application/json
+
+{
+    "status_name": "In Progress"
+}
+
+### PUT update status
+PUT {{web_api_host}}/api/statuses/1
+Content-Type: application/json
+
+{
+    "status_name": "Completed"
+}
+
+### DELETE status
+DELETE {{web_api_host}}/api/statuses/1
+
+### ASSIGNMENTS
+
+### GET all assignments
+GET {{web_api_host}}/api/assignments HTTP/2
+
+### GET one assignment
+GET {{web_api_host}}/api/assignments/1 HTTP/2
+
+### POST create assignment
+POST {{web_api_host}}/api/assignments HTTP/2
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "task_id": 1,
+    "task_status_id": 1
+}
+
+### PUT update assignment
+PUT {{web_api_host}}/api/assignments/1
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "task_id": 1,
+    "task_status_id": 2
+}
+
+### DELETE assignment
+DELETE {{web_api_host}}/api/assignments/1

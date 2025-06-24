@@ -23,11 +23,11 @@ pub async fn get_users(pool: &State<DbPool>) -> Json<Vec<User>> {
 #[get("/users/<id>")]
 pub async fn get_user(id: i32, pool: &State<DbPool>) -> Option<Json<User>> {
     let mut conn = pool.get().ok()?;
-    User::read(&mut conn, id).ok().flatten().map(Json)
+    User::read(&mut conn, id).ok().map(Json)
 }
 
 #[put("/users/<id>", data = "<user>")]
-pub async fn update_user(id: i32, pool: &State<DbPool>, user: Json<UserInput>) ->Option<Json<User>> {
+pub async fn update_user(id: i32, pool: &State<DbPool>, user: Json<UserInput>) -> Option<Json<User>> {
     let mut conn = pool.get().ok()?;
     let updated_user = NewUser {
         name: &user.name,
@@ -38,7 +38,7 @@ pub async fn update_user(id: i32, pool: &State<DbPool>, user: Json<UserInput>) -
 }
 
 #[post("/users", data = "<user>")]
-pub async fn create_user(pool: &State<DbPool>, user: Json<UserInput>) ->Option<Json<User>> {
+pub async fn create_user(pool: &State<DbPool>, user: Json<UserInput>) -> Option<Json<User>> {
     let mut conn = pool.get().ok()?;
     let new_user = NewUser {
         name: &user.name,
